@@ -1,0 +1,40 @@
+/* Estilo geral do body */
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #f0f0f0; /* Fundo claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    animation: backgroundAnimation 3s infinite;
+}
+
+/* Estilo da bolinha */
+#bolinha {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: #3498db; /* Cor da bolinha */
+    border-radius: 50%; /* Faz a bolinha ser redonda */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.1s ease-out; /* Transição suave para o movimento */
+}
+
+/* Efeito de destaque quando a bolinha se move */
+#bolinha.moving {
+    transform: scale(1.2); /* Aumenta a bolinha momentaneamente */
+}
+
+/* Animação do fundo */
+@keyframes backgroundAnimation {
+    0% {
+        background-color: #f0f0f0;
+    }
+    50% {
+        background-color: #ecf0f1;
+    }
+    100% {
+        background-color: #f0f0f0;
+    }
+}

@@ -1,43 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bolinha Controlável</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-        #bolinha {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css"> <!-- Linkando o arquivo CSS -->
 </head>
 <body>
-    <img id="bolinha" src="img/bolinha.png" alt="Bolinha">
+    <div id="bolinha"></div>
 
     <script>
         const bolinha = document.getElementById('bolinha');
-        let x = window.innerWidth / 2;
-        let y = window.innerHeight / 2;
-        const velocidade = 5;
+        let x = window.innerWidth / 2 - 35; // Ajustado para o centro
+        let y = window.innerHeight / 2 - 35; // Ajustado para o centro
+        const velocidade = 8; // Velocidade do movimento
+
+        // Posiciona a bolinha inicialmente
+        bolinha.style.left = `${x}px`;
+        bolinha.style.top = `${y}px`;
 
         document.addEventListener('keydown', (e) => {
+            bolinha.classList.add('moving'); // Adiciona o efeito de movimento
+
             if (e.key === 'ArrowUp') y -= velocidade;
             if (e.key === 'ArrowDown') y += velocidade;
             if (e.key === 'ArrowLeft') x -= velocidade;
             if (e.key === 'ArrowRight') x += velocidade;
 
-            // Limita dentro da tela
-            x = Math.max(25, Math.min(x, window.innerWidth - 25));
-            y = Math.max(25, Math.min(y, window.innerHeight - 25));
+            // Limita a bolinha dentro da tela
+            x = Math.max(35, Math.min(x, window.innerWidth - 105)); // 35 é metade da largura da bolinha
+            y = Math.max(35, Math.min(y, window.innerHeight - 105)); // 35 é metade da altura da bolinha
 
-            bolinha.style.left = x + 'px';
-            bolinha.style.top = y + 'px';
+            // Atualiza a posição da bolinha
+            bolinha.style.left = `${x}px`;
+            bolinha.style.top = `${y}px`;
+
+            // Remove o efeito de movimento após 100ms
+            setTimeout(() => {
+                bolinha.classList.remove('moving');
+            }, 100);
         });
     </script>
 </body>
