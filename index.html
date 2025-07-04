@@ -1,43 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bolinha Controlável</title>
+    <title>Bolinhas Controláveis</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
         }
-        #bolinha {
+        .bolinha {
             position: absolute;
             width: 70px;
             height: 70px;
+            transform: translate(-50%, -50%);
+        }
+        #bolinha1 {
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+        }
+        #bolinha2 {
+            top: 60%;
+            left: 60%;
         }
     </style>
 </head>
 <body>
-    <img id="bolinha" src="img/bolinha.png" alt="Bolinha">
+    <img id="bolinha1" class="bolinha" src="img/bolinha.png" alt="Bolinha 1">
+    <img id="bolinha2" class="bolinha" src="img/bolinha.rosa.png" alt="Bolinha 2">
 
     <script>
-        const bolinha = document.getElementById('bolinha');
-        let x = window.innerWidth / 2;
-        let y = window.innerHeight / 2;
+        const bolinha1 = document.getElementById('bolinha1');
+        const bolinha2 = document.getElementById('bolinha2');
+        let x1 = window.innerWidth / 2, y1 = window.innerHeight / 2;
+        let x2 = window.innerWidth / 4, y2 = window.innerHeight / 4;
         const velocidade = 5;
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowUp') y -= velocidade;
-            if (e.key === 'ArrowDown') y += velocidade;
-            if (e.key === 'ArrowLeft') x -= velocidade;
-            if (e.key === 'ArrowRight') x += velocidade;
+            // Movimentação da bolinha 1 (Bolinha principal)
+            if (e.key === 'ArrowUp') y1 -= velocidade;
+            if (e.key === 'ArrowDown') y1 += velocidade;
+            if (e.key === 'ArrowLeft') x1 -= velocidade;
+            if (e.key === 'ArrowRight') x1 += velocidade;
+
+            // Movimentação da bolinha 2 (Bolinha secundária)
+            if (e.key === 'w') y2 -= velocidade;
+            if (e.key === 's') y2 += velocidade;
+            if (e.key === 'a') x2 -= velocidade;
+            if (e.key === 'd') x2 += velocidade;
 
             // Limita dentro da tela
-            x = Math.max(25, Math.min(x, window.innerWidth - 25));
-            y = Math.max(25, Math.min(y, window.innerHeight - 25));
+            x1 = Math.max(25, Math.min(x1, window.innerWidth - 25));
+            y1 = Math.max(25, Math.min(y1, window.innerHeight - 25));
 
-            bolinha.style.left = x + 'px';
-            bolinha.style.top = y + 'px';
+            x2 = Math.max(25, Math.min(x2, window.innerWidth - 25));
+            y2 = Math.max(25, Math.min(y2, window.innerHeight - 25));
+
+            bolinha1.style.left = x1 + 'px';
+            bolinha1.style.top = y1 + 'px';
+
+            bolinha2.style.left = x2 + 'px';
+            bolinha2.style.top = y2 + 'px';
         });
     </script>
 </body>
